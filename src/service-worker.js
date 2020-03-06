@@ -11,6 +11,8 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 // App Shell
 workbox.routing.registerNavigationRoute("/index.html");
 
+workbox.googleAnalytics.initialize();
+
 // La API usa Stale While Revalidate para mayor velocidad
 workbox.routing.registerRoute(
   /^https?:\/\/www.themealdb.com\/api\/.*/,
