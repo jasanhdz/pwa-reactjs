@@ -34,6 +34,20 @@ workbox.routing.registerRoute(
   "GET"
 );
 
+// cache de images del request de themealdb
+workbox.routing.registerRoute(
+  /^https?:\/\/www.themealdb.com\/images\/.*/,
+  new workbox.strategies.CacheFirst({
+    cacheName: "image-cache",
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 7 * 24 * 60 * 60,
+        maxEntries: 20
+      })
+    ]
+  })
+);
+
 // Todo lo demás usa Network First
 workbox.routing.registerRoute(
   /^https?.*/,
